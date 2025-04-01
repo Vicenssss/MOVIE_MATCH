@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "Interestelar",
+    "genre": ["Ficção científica", "Aventura"],
+    "poster": "url_da_imagem"
+  },
+  {
+    "id": 2,
+    "title": "Clube da Luta",
+    "genre": ["Drama", "Suspense"],
+    "poster": "url_da_imagem"
+  }
+]
