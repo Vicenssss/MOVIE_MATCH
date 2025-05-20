@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-hot-toast';
 import { Film } from 'lucide-react';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('demo@example.com');
+  const [password, setPassword] = useState('demo123');
   const { signIn } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await signIn(email, password);
+      navigate('/movies');
     } catch (error: any) {
       toast.error(error.message);
     }
@@ -27,8 +29,15 @@ export default function Login() {
             Movie Match
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            Find your movie soulmate
+            Find your movie matches
           </p>
+          <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+            <p className="text-sm text-gray-600">
+              Demo Account:<br />
+              Email: demo@example.com<br />
+              Password: demo123
+            </p>
+          </div>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
@@ -61,12 +70,6 @@ export default function Login() {
             >
               Sign in
             </button>
-          </div>
-
-          <div className="text-sm text-center">
-            <Link to="/register" className="font-medium text-indigo-600 hover:text-indigo-500">
-              Don't have an account? Sign up
-            </Link>
           </div>
         </form>
       </div>
